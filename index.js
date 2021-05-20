@@ -1,32 +1,29 @@
 const express = require('express');
-const kcAdminClient = require('./keycloak-config.js');
+const kcAdminClient = require('./keycloakClient.js');
 
 const app = express();
-
 const port = 8083;
-
-const credentials = {
-  username: 'user',
-  password: 'admin',
-  grant_type: 'password',
-  clientId: 'node-microservice',
-  totp: '123456',
-  clientSecret: 'fc296488-8d24-4989-86e2-9c99965a7323',
-};
-
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
 
+var credentials = {
+  username: 'admin',
+  password: 'admin',
+  grantType: 'password',
+  clientId: 'account',
+  clientSecret: '4c34747a-10c2-4877-9a98-d3d51f41b9a7'
+};
+
 app.get('/auth', async (req, res) => {
 
   try {
-    await kcAdminClient.auth({credentials});
+    await kcAdminClient.auth(credentials);
 
     res.status(200).send({
       accessToken: kcAdminClient.accessToken,
-      refreshToken: kcAdminClient.refreshToken
+      refreshToken: kcAdminClient.refreshToken,
     });
   } catch (err) {
     console.log(err);
@@ -68,7 +65,7 @@ app.use(express.urlencoded({
 
 // Creates user
 app.post('/users', async (req, res) => {
-  const { username, email, firstName, lastName } = req.body;
+  var { username, email, firstName, lastName } = req.body;
   let response;
   try {
     response = await kcAdminClient.users.create({
