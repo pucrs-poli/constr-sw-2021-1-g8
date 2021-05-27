@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
+const question = require('./question');
 const Schema = mongoose.Schema;
 
 const testSchema = new Schema({
-  id: {
-    type: String,
-    required: true
-  },
   subjects: {
     type: [String],
     required: true
@@ -17,6 +14,10 @@ const testSchema = new Schema({
   duration: {
       type: Number,
       required: true
+  },
+  questions: {
+    type: [question],
+    required: true
   }
 });
 
