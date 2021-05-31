@@ -1,14 +1,29 @@
-async function insert(Model) {
+async function insert(Model, body) {
     return new Promise((resolve, reject) => {
-        Model.save((err, user) => err ? reject(err) : resolve(user)
+        Model.save((err, body) => err ? reject(err) : resolve(body)
         );
     });
 }
 
 async function getAll(Model) {
     return new Promise((resolve, reject) => {
-        Model.find({}).exec((err, data) =>  err ? reject(err) : resolve(data) 
+        Model.find({}).exec((err, data) => err ? reject(err) : resolve(data)
         );
+    });
+}
+
+async function edit(Model, body) {
+    return new Promise((resolve, reject) => {
+        Model.update((err, body) => err ? reject(err) : resolve(body)
+        );
+    });
+}
+
+async function remove(Model) {
+    return new Promise((resolve, reject) => {
+        deleteOne({}, (err) => {
+            () => handleError(err);
+        });
     });
 }
 

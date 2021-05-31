@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const repository = require("./repository/repository");
+const test = require("./domain/test")
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -8,11 +10,19 @@ app.use(express.urlencoded({ extended: false }));
 mongoose.connect(
     'mongodb://mongo:27017/docker-node-mongo',
     { useNewUrlParser: true }
-  )
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+)
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.log(err));
 
-const test = require('./domain/test');
+app.get('/tests', async (req, res) => {
+    var tests = await repository.getAll(test);
+    res.send(tests);
+});
 
+app.post('/tests', async (req, res) => {
+    var createdTest = await repository.insert(test, req.body);
+    res.status(201).send(createdTest);
+});
 
-app.listen(8083, () => console.log('Server running...'));
+app.listen(3000, () => console.log('Server running...'));
+
