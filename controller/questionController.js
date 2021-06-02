@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const question = require('../domain/test');
+const question = require('../domain/teste');
 const repository = require('../repository/repository');
 
 router.get('/', async (req, res) => {

@@ -2,11 +2,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest"
   },
   "dependencies": {
     "ejs": "^3.1.2",
     "express": "^4.16.3",
     "mongoose": "^5.2.7"
+  },
+  "devDependencies": {
+    "jest": "^27.0.3",
+    "supertest": "^6.1.3"
   }
 }
