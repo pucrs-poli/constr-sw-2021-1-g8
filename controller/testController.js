@@ -4,33 +4,33 @@ const test = require('../domain/teste');
 const result = require('../domain/result');
 const repository = require('../repository/repository');
 
-router.get('/', (req, res) => {
-  var tests = repository.getAll(test);
+router.get('/', async (req, res) => {
+  var tests = await repository.getAll(test);
   res.send(tests);
 });
 
-router.post('/', (req, res) => {
-  var createdTest = repository.insert(test, req.body);
+router.post('/', async (req, res) => {
+  var createdTest = await repository.insert(test, req.body);
   res.status(201).send(createdTest);
 });
 
-router.get('/:id', (req, res) => {
-  var testById = repository.getById(test, req.params.id);
+router.get('/:id', async (req, res) => {
+  var testById = await repository.getById(test, req.params.id);
   res.send(testById);
 });
 
-router.get('/:id/questions', (req, res) => {
-  var test = repository.getById(test, req.params.id);
-  res.send(tests.questions);
+router.get('/:id/questions', async (req, res) => {
+  var testById = await repository.getById(test, req.params.id);
+  res.send(testById.questions);
 });
 
-router.put('/', (req, res) => {
-  var testEdited = repository.edit(test, req.body);
+router.put('/:id', async (req, res) => {
+  var testEdited = await repository.edit(test, req.body, req.params.id);
   res.send(testEdited);
 });
 
-router.delete('/:id', (req, res) => {
-  repository.remove(test, req.params.id);
+router.delete('/:id', async (req, res) => {
+  await repository.remove(test, req.params.id);
   res.send(true);
 });
 

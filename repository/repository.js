@@ -10,8 +10,9 @@ async function getById(Model, id) {
     return await Model.findById(id).exec();
 }
 
-async function edit(Model, body) {
-    return await Model.updateOne({}, body);
+async function edit(Model, body, id) {
+    var object = getById(Model, id);
+    return await Model.updateOne(object, body);
 }
 
 async function remove(Model, id) {

@@ -1,40 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
-const questionSchema = new Schema({
-  number: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  type: {
-      type: Boolean,
-      required: false
-  },
-  options: {
-      type: {
-          letter: String,
-          answer: String
-      },
-      required: false
-  }
-});
+const questionSchema = require('./questionSchema')
 
 const testSchema = new Schema({
   subjects: {
-    type: [String],
-    required: true
+    type: [String]
   },
   weight: {
-      type: Number,
-      required: false
+      type: Number
   },
   duration: {
-      type: Number,
-      required: true
+      type: Number
   },
   questions: {
     type: [questionSchema],
@@ -43,4 +19,3 @@ const testSchema = new Schema({
 });
 
 module.exports = test = mongoose.model('test', testSchema);
-module.exports = question = mongoose.model('question', questionSchema);
