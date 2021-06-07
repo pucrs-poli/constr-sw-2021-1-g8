@@ -1,6 +1,6 @@
 const request = require('supertest');
 const createServer = require('../server');
-const app = createServer();
+const app = createServer(9000);
 
 var questionMock1 = {
     number: 2,
@@ -62,17 +62,25 @@ describe('GET /tests', () => {
 });
 
 describe('GET /tests/id', () => {
-    it('should return a tests by the id properly', async () => {
+    it('should return a test by the id properly', async () => {
     await request(app)
-        .get(`/tests/${`60bbc926ef486b504cc0e58a`}`)
+        .get(`/tests/${`60bbc3ea3eccec369409e990`}`)
         .expect(200);
+})
+});
+
+describe('GET /tests/id', () => {
+    it('should return a 404 not found for test', async () => {
+    await request(app)
+        .get(`/tess/${`60bbc3ea3eccec369409e990`}`)
+        .expect(404);
 })
 });
 
 describe('GET /tests/id/questions', () => {
     it('should return a tests by the id properly', async () => {
     await request(app)
-        .get(`/tests/${`60bbc926ef486b504cc0e58a`}/questions`)
+        .get(`/tests/${`60bbc3ea3eccec369409e990`}/questions`)
         .expect(200);
 })
 });
@@ -80,8 +88,24 @@ describe('GET /tests/id/questions', () => {
 describe('PUT /tests', () => {
     it('should edit a test by the id properly', async () => {
     await request(app)
-        .put(`/tests/${`60bbc926ef486b504cc0e58a`}`)
+        .put(`/tests/${`60bbc3ea3eccec369409e990`}`)
         .send(testMockEdited)
+        .expect(200);
+})
+});
+
+describe('DELETE /tests', () => {
+    it('should delete a test by the id properly', async () => {
+    await request(app)
+        .delete(`/tests/${`60bd493fc4548d255026d76d`}`)
+        .expect(200);
+})
+});
+
+describe('GET /tests/id/results', () => {
+    it('should return all results of a test by the id properly', async () => {
+    await request(app)
+        .get(`/tests/${`60bd63a6c917bc2328f9014d`}/results`)
         .expect(200);
 })
 });

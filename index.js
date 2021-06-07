@@ -1,3 +1,3 @@
 const createServer = require("./server");
 
-createServer();
+createServer(3030);

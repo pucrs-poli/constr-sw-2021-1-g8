@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const test = require('../domain/teste');
-const result = require('../domain/result');
 const repository = require('../repository/repository');
 
 router.get('/', async (req, res) => {
@@ -32,6 +31,11 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   await repository.remove(test, req.params.id);
   res.send(true);
+});
+
+router.get('/:id/results', async (req, res) => {
+  var testById = await repository.getById(test, req.params.id);
+  res.send(testById.results);
 });
 
 module.exports = router;

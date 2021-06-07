@@ -11,7 +11,7 @@ async function getById(Model, id) {
 }
 
 async function edit(Model, body, id) {
-    var object = getById(Model, id);
+    var object = await getById(Model, id);
     return await Model.updateOne(object, body);
 }
 

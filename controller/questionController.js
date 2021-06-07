@@ -9,14 +9,23 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { number, title} = req.body;
-  var questions = await repository.insert(question, { number, title });
-  res.status(201).send(questions);
+  var questionCreated = await repository.insert(question, req.body);
+  res.status(201).send(questionCreated);
 });
 
 router.get('/:id', async (req, res) => {
   var questionById = await repository.getById(question, req.params.id);
   res.send(questionById);
+});
+
+router.put('/:id', async (req, res) => {
+  var questionEdited = await repository.edit(question, req.body, req.params.id);
+  res.send(questionEdited);
+});
+
+router.delete('/:id', async (req, res) => {
+  await repository.remove(question, req.params.id);
+  res.send(true);
 });
 
 module.exports = router;
