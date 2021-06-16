@@ -9,11 +9,7 @@ const resultSchema = new Schema({
   },
   studentId: {
       type: Schema.Types.ObjectId,
-      required: false
-  },
-  testId: {
-      type: Schema.Types.ObjectId,
-      required: false
+      required: true
   }
 });
 

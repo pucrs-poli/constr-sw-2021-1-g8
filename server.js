@@ -13,7 +13,7 @@ function createServer(port) {
     var connection;
     if (connection == null) {
         connection = 1;
-        mongoose.connect("mongodb://localhost:27017/tests-api", { useNewUrlParser: true })
+        mongoose.connect("mongodb+srv://admin:admin@cluster0.mmz1f.mongodb.net/tests?retryWrites=true&w=majority", { useNewUrlParser: true })
             .then(() => {
                 app.listen(port, () => {
                     console.log("Server has started!")
