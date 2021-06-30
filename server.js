@@ -3,12 +3,14 @@ const testController = require('./controller/testController');
 const questionController = require('./controller/questionController');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
+const cors = require('cors');
 
 function createServer(port) {
     const app = express();
     app.use(bodyParser.json());
     app.use('/tests', testController);
     app.use('/questions', questionController);
+    app.use(cors())
 
     var connection;
     if (connection == null) {
