@@ -12,6 +12,6 @@ Diagrama Astah diponível em ".diagram/ClassDiagram.asta"
 
 ### Swagger
 
-Documentação API disponível no [SwaggerHub](https://app.swaggerhub.com/apis/matheus.tosin/cds/1.0.0)
+Documentação API disponível no [SwaggerHub](https://app.swaggerhub.com/apis/matheus.tosin/cds/1.0.0-oas3)
 
 
