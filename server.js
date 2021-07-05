@@ -7,10 +7,16 @@ const cors = require('cors');
 
 function createServer(port) {
     const app = express();
+
+    cors.CorsOptions = {
+        origin: '*',
+        methods: 'GET,HEAD,POST,PUT,DELETE'
+    };
+
+    app.use(cors());
     app.use(bodyParser.json());
     app.use('/tests', testController);
     app.use('/questions', questionController);
-    app.use(cors())
 
     var connection;
     if (connection == null) {
